@@ -1,0 +1,42 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+
+}
+
+group 'com.demo.project'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation    'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.5.3.Final'
+    implementation group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.3.Final'
+    implementation group: 'org.projectlombok', name: 'lombok-mapstruct-binding', version: '0.1.0'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.0'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation "org.mapstruct:mapstruct:1.4.2.Final", "org.projectlombok:lombok:1.18.20"
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final", "org.projectlombok:lombok:1.18.20", "org.projectlombok:lombok-mapstruct-binding:0.2.0"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava {
+    options.compilerArgs = [
+            '-Amapstruct.defaultComponentModel=spring'
+    ]
+}
