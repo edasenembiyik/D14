@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -26,11 +27,11 @@ public class Citizen {
     private boolean hasDrivingLicense;
     private Integer numberOfChildren;
 
-    @ManyToOne
-    private Citizen parent;
+    @ElementCollection
+    private List<SubCitizenDto> children = new ArrayList<>();
 
-    @OneToMany(mappedBy = "parent")
-    private List<Citizen> children;
+    @ElementCollection
+    private List<SubCitizenDto> parent= new ArrayList<>();
 
     @CreationTimestamp
     private LocalDateTime dataInsertionDateTime;

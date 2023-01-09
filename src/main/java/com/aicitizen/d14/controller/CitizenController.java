@@ -19,6 +19,8 @@ public class CitizenController {
         this.citizenService = citizenService;
     }
 
+
+    @CrossOrigin("*")
     @GetMapping
     public List<Citizen> getCitizens(@RequestParam(required = false) Boolean isCitizen,
                                      @RequestParam(required = false) String name,
@@ -26,24 +28,24 @@ public class CitizenController {
                                      @RequestParam(required = false) Boolean hasDrivingLicense) {
         return citizenService.findAllWithParameters(isCitizen,name,numberOfChildren, hasDrivingLicense);
     }
-
+    @CrossOrigin("*")
     @GetMapping("/{id}")
     public ResponseEntity<Citizen> getCitizen(@PathVariable Long id) {
         return  ResponseEntity.ok(citizenService.findCitizenById(id));
     }
-
+    @CrossOrigin("*")
     @PostMapping
     public ResponseEntity<Citizen> addCitizen(@RequestBody AddCitizenRequestDto citizenDto) {
         Citizen citizen = citizenService.addCitizen(citizenDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(citizen);
     }
-
+    @CrossOrigin("*")
     @PutMapping("/{id}")
     public ResponseEntity<Citizen> updateCitizen(@PathVariable Long id, @RequestBody UpdateCitizenRequestDto citizenDto) {
         return ResponseEntity.ok(  citizenService.updateCitizen(id,citizenDto));
 
     }
-
+    @CrossOrigin("*")
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCitizen(@PathVariable Long id) {
         citizenService.deleteCitizen(id);
